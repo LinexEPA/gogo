@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>臨床教材發想｜Voice-first V0.3</title>
+<style>
+:root{
+  --bg:#fbfaf7;--ink:#18344a;--muted:#6d7f8a;--line:#dce5e9;
+  --blue:#edf6fb;--green:#eff8f0;--peach:#fff3ea;--pink:#fdf0f2;--lav:#f4f1fb;--nav:#28516b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:820px;margin:auto;padding:20px 14px 60px}
+h1{font-size:28px;line-height:1.25;margin:0 0 8px}
+h2{font-size:21px;line-height:1.35;margin:0}
+h3{font-size:17px;margin:0 0 10px}
+.sub{color:var(--muted);line-height:1.65;font-size:14px}
+.notice,.okbox{
+  border-radius:16px;padding:13px 14px;font-size:13px;line-height:1.65;margin:14px 0
+}
+.notice{background:#fff8de;border:1px solid #ebdda8}
+.okbox{background:#eef8f0;border:1px solid #cfe5d2}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:18px;margin:14px 0;box-shadow:0 7px 22px rgba(38,68,88,.05)
+}
+.titleline{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.num{
+  flex:0 0 36px;width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;font-weight:700;background:#dfeff8
+}
+label{display:block;color:var(--muted);font-size:13px;margin:13px 0 6px}
+input,textarea,select{
+  width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #cfdce2;
+  border-radius:13px;padding:12px 13px
+}
+textarea{min-height:92px;resize:vertical}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.choice{
+  display:flex;gap:9px;align-items:flex-start;border:1px solid #d2dde2;border-radius:14px;
+  padding:11px;background:#fff;min-height:68px
+}
+.choice input{width:20px;height:20px;margin:2px 0 0;flex:0 0 20px}
+.choice b{display:block;font-size:15px;margin-bottom:3px}
+.choice small{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.blue{background:var(--blue)} .green{background:var(--green)} .peach{background:var(--peach)} .pink{background:var(--pink)} .lav{background:var(--lav)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:14px;
+  padding:12px 14px;font:inherit;font-weight:700;cursor:pointer
+}
+.primary{background:var(--nav);color:white}
+.secondary{background:#eef3f5;color:var(--nav)}
+.mic{background:#fff1f3;color:#8a4c59;border:1px solid #efd2d8}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.anchor{
+  display:block;width:100%;text-align:center;text-decoration:none;background:var(--nav);color:#fff;
+  border-radius:14px;padding:12px 14px;margin-top:15px;font-weight:700
+}
+.tip{font-size:13px;color:#496a7d;background:#f5f8f9;border-radius:12px;padding:10px 11px;margin-top:10px;line-height:1.55}
+.outgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bucket{border:1px solid var(--line);border-radius:16px;padding:14px}
+.bucket ul{margin:0;padding-left:20px;line-height:1.65}
+.summarybox{
+  border:1px dashed #bfcdd5;background:#f8fafb;border-radius:16px;padding:14px;line-height:1.7;
+  white-space:pre-wrap;font-size:14px
+}
+.groupgrid{display:grid;gap:10px}
+.member{
+  border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff
+}
+.member b{display:block;margin-bottom:5px}
+.sticky{
+  position:sticky;bottom:10px;margin-top:18px;background:rgba(251,250,247,.94);
+  backdrop-filter:blur(10px);padding:8px;border-radius:16px;border:1px solid var(--line)
+}
+.smallnav{display:flex;gap:8px;overflow-x:auto;padding:2px}
+.smallnav a{
+  text-decoration:none;white-space:nowrap;background:#fff;border:1px solid var(--line);
+  color:#526a79;border-radius:999px;padding:8px 10px;font-size:12px
+}
+.status{
+  font-size:12px;color:#6d7f8a;margin-top:8px
+}
+@media(max-width:560px){
+  .options,.outgrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>從臨床經驗長出教材</h1>
+  <div class="sub">Voice-first 測試版：先「說出來」，再整理成教學方向，最後可切成 5 個小組片段。</div>
+
+  <div class="notice">
+    <b>重要：</b>請勿說出病人姓名、床號、病歷號或其他可識別個資。若網站麥克風不可用，仍可使用手機鍵盤內建語音輸入。
+  </div>
+  <div id="jsStatus" class="okbox">正在檢查 JavaScript…</div>
+  <noscript><div class="notice"><b>目前環境沒有執行 JavaScript。</b> 因此「整理內容」「產生摘要」「語音轉文字」都不會工作。</div></noscript>
+
+  <section class="card blue" id="s1">
+    <div class="titleline"><div class="num">1</div><h2>先說一個主題</h2></div>
+    <label>主題</label>
+    <input id="topic" value="導尿護理" placeholder="例如：導尿護理、跌倒預防、給藥安全">
+    <label>對象</label>
+    <select id="audience">
+      <option>學員／臨床工作人員</option>
+      <option>病人／家屬／照顧者</option>
+    </select>
+    <a class="anchor" href="#s2">下一段 ↓</a>
+  </section>
+
+  <section class="card pink" id="s2">
+    <div class="titleline"><div class="num">2</div><h2>不用整理，先把經驗說出來</h2></div>
+    <textarea id="experience" placeholder="例如：大家其實都學過導尿，可是實際做時常常物品沒有備齊，碰到無菌區又不確定有沒有污染，病人也會很緊張…"></textarea>
+    <div class="row">
+      <button class="btn mic" type="button" id="micBtn">🎤 開始說話</button>
+      <button class="btn secondary" type="button" id="clearExp">清空</button>
+    </div>
+    <div class="status" id="micStatus">若網頁麥克風不可用，可直接點輸入框，使用 iPhone／Android 鍵盤的語音輸入。</div>
+    <div class="tip">請勿說出病人姓名、床號、病歷號或其他可識別個資。</div>
+    <a class="anchor" href="#s3">下一段：幫自己標記經驗 ↓</a>
+  </section>
+
+  <section class="card green" id="s3">
+    <div class="titleline"><div class="num">3</div><h2>這段經驗主要碰到哪些面向？</h2></div>
+    <div class="options">
+      <label class="choice"><input type="checkbox" name="where" value="準備"><span><b>準備</b><small>用品、環境、病人準備</small></span></label>
+      <label class="choice"><input type="checkbox" name="where" value="技術步驟"><span><b>技術步驟</b><small>動作、順序、位置</small></span></label>
+      <label class="choice"><input type="checkbox" name="where" value="安全／無菌"><span><b>安全／無菌</b><small>污染、禁忌、不能繼續的情況</small></span></label>
+      <label class="choice"><input type="checkbox" name="where" value="臨床判斷"><span><b>臨床判斷</b><small>異常、改變做法、求助</small></span></label>
+      <label class="choice"><input type="checkbox" name="where" value="病人關懷"><span><b>病人關懷</b><small>隱私、說明、不適、安心</small></span></label>
+      <label class="choice"><input type="checkbox" name="where" value="後續照護"><span><b>後續照護</b><small>固定、觀察、紀錄、預防傷害</small></span></label>
+    </div>
+    <a class="anchor" href="#s4">下一段：為什麼重要 ↓</a>
+  </section>
+
+  <section class="card peach" id="s4">
+    <div class="titleline"><div class="num">4</div><h2>哪些是你最不想讓學員漏掉的？</h2></div>
+    <textarea id="mustKnow" placeholder="想到什麼就寫什麼，例如：一次備齊、無菌一旦污染就要重新處理、病人隱私、導管固定避免壓傷…"></textarea>
+    <div class="row">
+      <button class="btn mic" type="button" id="micBtn2">🎤 用說的補充</button>
+    </div>
+    <div class="status" id="micStatus2"></div>
+    <a class="anchor" href="#s5">下一段：整理候選方向 ↓</a>
+  </section>
+
+  <section class="card lav" id="s5">
+    <div class="titleline"><div class="num">5</div><h2>把剛剛的內容整理成「可分工的小主題」</h2></div>
+    <div class="sub">這一步不是 AI 自動理解，而是依你勾選的面向，建立可以繼續細化的候選區塊。</div>
+    <button class="btn primary" type="button" id="buildBtn" style="width:100%;margin-top:12px">整理候選方向</button>
+    <div id="output" style="margin-top:14px"></div>
+  </section>
+
+  <section class="card" id="s6">
+    <div class="titleline"><div class="num">6</div><h2>5 人小組：每人約 20 秒</h2></div>
+    <div class="sub">把同一個主題切成 5 個可以獨立完成、最後又能串起來的片段。</div>
+    <button class="btn primary" type="button" id="groupBtn" style="width:100%;margin-top:12px">產生 5 人分段架構</button>
+    <div id="groupOut" class="groupgrid" style="margin-top:14px"></div>
+
+    <label>最後的第一版教材摘要</label>
+    <button class="btn secondary" type="button" id="summaryBtn" style="width:100%">產生摘要</button>
+    <div class="summarybox" id="summary" style="margin-top:12px">尚未產生。</div>
+    <button class="btn secondary" type="button" id="copyBtn" style="width:100%;margin-top:10px">複製摘要</button>
+  </section>
+
+  <div class="sticky">
+    <div class="smallnav">
+      <a href="#s1">1 主題</a><a href="#s2">2 說經驗</a><a href="#s3">3 面向</a>
+      <a href="#s4">4 重點</a><a href="#s5">5 整理</a><a href="#s6">6 分組</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  $('jsStatus').textContent = '✓ JavaScript 已啟用。第 5、6 步可以執行。';
+  $('jsStatus').className = 'okbox';
+
+  function checked(name){
+    return [...document.querySelectorAll('input[name="'+name+'"]:checked')].map(x=>x.value);
+  }
+
+  let directions = [];
+
+  function buildDirections(){
+    const topic = ($('topic').value || '這個主題').trim();
+    const w = checked('where');
+    directions = [];
+    const map = {
+      '準備': `${topic}｜開始前準備與一次備齊`,
+      '技術步驟': `${topic}｜關鍵置放步驟與正確操作`,
+      '安全／無菌': `${topic}｜無菌維持與污染後處理`,
+      '臨床判斷': `${topic}｜異常情況與何時停止／求助`,
+      '病人關懷': `${topic}｜病人隱私、說明與舒適`,
+      '後續照護': `${topic}｜固定、觀察與後續傷害預防`
+    };
+    w.forEach(x => directions.push(map[x]));
+    if(!directions.length){
+      directions = [
+        `${topic}｜開始前要準備什麼`,
+        `${topic}｜最重要的操作步驟`,
+        `${topic}｜最不能出錯的安全重點`,
+        `${topic}｜病人感受與溝通`,
+        `${topic}｜完成後要注意什麼`
+      ];
+    }
+    $('output').innerHTML =
+      `<div class="outgrid">
+        <div class="bucket blue">
+          <h3>目前長出的候選小主題</h3>
+          <ul>${directions.map(x=>`<li>${x}</li>`).join('')}</ul>
+        </div>
+        <div class="bucket green">
+          <h3>你可以再問自己</h3>
+          <ul>
+            <li>哪一段最值得「看見畫面」？</li>
+            <li>哪一段需要真人／實體示範？</li>
+            <li>哪一段只要 15–20 秒就能講清楚？</li>
+            <li>哪些內容不適合生成式影像？</li>
+          </ul>
+        </div>
+      </div>`;
+    $('s5').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function makeGroup(){
+    const topic = ($('topic').value || '未命名主題').trim();
+    if(!directions.length) buildDirections();
+    let segs = directions.slice(0,5);
+    const fallbacks = [
+      `${topic}｜開場：這次最值得複習的是什麼`,
+      `${topic}｜準備`,
+      `${topic}｜核心操作`,
+      `${topic}｜安全／病人關懷`,
+      `${topic}｜完成後照護與重點收束`
+    ];
+    while(segs.length < 5) segs.push(fallbacks[segs.length]);
+
+    $('groupOut').innerHTML = segs.map((s,i)=>`
+      <div class="member ${['blue','green','peach','pink','lav'][i]}">
+        <b>第 ${i+1} 位｜約 20 秒</b>
+        <div>${s}</div>
+        <div class="status">每人只負責把這一小段說清楚；最後依同一視覺規格串接。</div>
+      </div>`).join('');
+    $('s6').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function makeSummary(){
+    const topic = ($('topic').value || '未命名主題').trim();
+    const audience = $('audience').value;
+    const exp = $('experience').value.trim();
+    const must = $('mustKnow').value.trim();
+    if(!directions.length) buildDirections();
+
+    $('summary').textContent =
+`主題：${topic}
+對象：${audience}
+
+原始臨床經驗：
+${exp || '尚未輸入'}
+
+目前標記面向：
+${checked('where').join('、') || '尚未勾選'}
+
+最不想漏掉的重點：
+${must || '尚未輸入'}
+
+候選小主題：
+- ${directions.join('\n- ')}
+
+小組製作方式：
+5 人一組，每人約 20 秒；每人完成一個可獨立理解的小段，最後以相同片頭／字體／比例／角色設定串接成約 100 秒以上的完整教材。
+
+下一步：
+每個小主題再進入「畫面怎麼呈現 → 分鏡 → Prompt → 生成／拍攝 → 串接」。`;
+  }
+
+  $('buildBtn').addEventListener('click', buildDirections);
+  $('groupBtn').addEventListener('click', makeGroup);
+  $('summaryBtn').addEventListener('click', makeSummary);
+  $('clearExp').addEventListener('click', ()=> $('experience').value='');
+  $('copyBtn').addEventListener('click', async function(){
+    try{
+      await navigator.clipboard.writeText($('summary').textContent);
+      this.textContent='已複製';
+    }catch(e){
+      this.textContent='請長按摘要複製';
+    }
+  });
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  function setupMic(btnId, targetId, statusId){
+    const btn=$(btnId), target=$(targetId), status=$(statusId);
+    if(!SR){
+      btn.disabled=true;
+      btn.textContent='🎤 請用鍵盤麥克風';
+      status.textContent='此瀏覽器未提供網頁語音辨識；仍可點輸入框，使用手機鍵盤內建語音輸入。';
+      return;
+    }
+    const rec = new SR();
+    rec.lang='zh-TW';
+    rec.interimResults=true;
+    rec.continuous=false;
+    let base='';
+    btn.addEventListener('click', ()=>{
+      base=target.value.trim();
+      status.textContent='正在聆聽…';
+      try{rec.start()}catch(e){}
+    });
+    rec.onresult=(ev)=>{
+      let txt='';
+      for(let i=ev.resultIndex;i<ev.results.length;i++) txt+=ev.results[i][0].transcript;
+      target.value=(base ? base+' ' : '')+txt;
+    };
+    rec.onend=()=> status.textContent='語音輸入結束，可繼續補充或直接往下。';
+    rec.onerror=()=> status.textContent='網頁麥克風未成功，請改用手機鍵盤的語音輸入。';
+  }
+  setupMic('micBtn','experience','micStatus');
+  setupMic('micBtn2','mustKnow','micStatus2');
+})();
+</script>
+</body>
+</html>
