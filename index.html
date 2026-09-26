@@ -3,80 +3,95 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>從臨床經驗長出教材｜Voice-first V0.5</title>
+<title>把腦中的影片想法說清楚</title>
 <style>
-:root{--bg:#fbfaf7;--ink:#18344a;--muted:#667b89;--line:#dbe5e9;--nav:#28516b;--blue:#edf6fb;--green:#eff8f0;--peach:#fff3ea;--pink:#fdf0f2;--lav:#f4f1fb;--sand:#faf6e9}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;-webkit-text-size-adjust:100%}button,input,textarea,select{font:inherit}.wrap{max-width:850px;margin:auto;padding:20px 14px 88px}h1{font-size:28px;line-height:1.25;margin:0 0 8px}h2{font-size:21px;line-height:1.4;margin:0}h3{font-size:16px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.7;font-size:14px}.notice,.okbox{border-radius:16px;padding:13px 14px;font-size:13px;line-height:1.7;margin:14px 0}.notice{background:#fff8de;border:1px solid #ebdda8}.okbox{background:#eef8f0;border:1px solid #cfe5d2}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 7px 22px rgba(38,68,88,.05)}.blue{background:var(--blue)}.green{background:var(--green)}.peach{background:var(--peach)}.pink{background:var(--pink)}.lav{background:var(--lav)}.sand{background:var(--sand)}.titleline{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}.num{flex:0 0 36px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#dfeff8}label.fieldlabel{display:block;color:var(--muted);font-size:13px;margin:14px 0 6px}input[type="text"],textarea,select{width:100%;color:var(--ink);background:#fff;border:1px solid #cbd9df;border-radius:13px;padding:12px 13px;outline:none}textarea{min-height:92px;resize:vertical;line-height:1.6}textarea.tall{min-height:135px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choice{display:flex;gap:9px;align-items:flex-start;border:1px solid #d2dde2;border-radius:14px;padding:11px;background:#fff;min-height:62px;cursor:pointer}.choice input{width:20px;height:20px;margin:2px 0 0;flex:0 0 20px}.choice b{display:block;font-size:15px;margin-bottom:3px}.choice small{display:block;color:var(--muted);font-size:12px;line-height:1.45}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:14px;padding:12px 14px;font-weight:750;cursor:pointer;min-height:44px}.primary{background:var(--nav);color:#fff}.secondary{background:#eef3f5;color:var(--nav);border:1px solid #d8e1e5}.mic{background:#fff1f3;color:#8a4c59;border:1px solid #efd2d8}.mic.listening{background:#8a4c59;color:#fff}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.anchor{display:block;width:100%;text-align:center;text-decoration:none;background:var(--nav);color:#fff;border-radius:14px;padding:12px 14px;margin-top:16px;font-weight:750}.tip{font-size:13px;color:#496a7d;background:#f5f8f9;border-radius:12px;padding:10px 11px;margin-top:10px;line-height:1.6}.status{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.55}.section-sep{height:1px;background:rgba(120,145,158,.22);margin:16px 0}.output-card{border:1px solid var(--line);background:#fff;border-radius:17px;padding:14px;margin:10px 0}.output-card textarea{background:#fbfcfd;min-height:250px;font-size:13px}.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,250,247,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px}.smallnav{max-width:850px;margin:auto;display:flex;gap:7px;overflow-x:auto}.smallnav a{text-decoration:none;white-space:nowrap;background:#fff;border:1px solid var(--line);color:#526a79;border-radius:999px;padding:8px 10px;font-size:12px}@media(max-width:640px){.grid2,.options{grid-template-columns:1fr}.wrap{padding-left:12px;padding-right:12px}.card{padding:16px}h1{font-size:25px}.btn{width:100%}}
+:root{--bg:#fbfaf7;--ink:#19384a;--muted:#6b7e89;--line:#dbe5e9;--nav:#315f78;--blue:#edf6fb;--peach:#fff4ea;--green:#eef8f2;--lav:#f4f1fb;--shadow:0 8px 26px rgba(38,68,88,.06)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;-webkit-text-size-adjust:100%}button,input,textarea,select{font:inherit}.wrap{max-width:820px;margin:auto;padding:24px 14px 80px}.hero{padding:8px 4px}h1{font-size:29px;line-height:1.3;margin:0 0 8px}h2{font-size:21px;line-height:1.45;margin:0}h3{font-size:16px;margin:0 0 8px}.sub{color:var(--muted);font-size:14px;line-height:1.7}.notice{margin:16px 0;padding:13px 14px;border-radius:16px;background:#fff8de;border:1px solid #ebdda8;font-size:13px;line-height:1.65}.flowline{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:16px 0 4px;color:#557180;font-size:13px;font-weight:700}.flowline span{background:#fff;border:1px solid var(--line);padding:7px 10px;border-radius:999px}.flowline b{color:#91a2ab}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:var(--shadow)}.blue{background:var(--blue)}.peach{background:var(--peach)}.green{background:var(--green)}.lav{background:var(--lav)}.titleline{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}.num{flex:0 0 36px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#dcecf5}label.fieldlabel{display:block;color:#526d7b;font-size:13px;font-weight:700;margin:14px 0 6px}input[type="text"],textarea,select{width:100%;color:var(--ink);background:#fff;border:1px solid #c9d7dd;border-radius:13px;padding:12px 13px;outline:none}input:focus,textarea:focus,select:focus{border-color:#7fa9bd;box-shadow:0 0 0 3px rgba(90,145,170,.11)}textarea{min-height:96px;resize:vertical;line-height:1.65}.tall{min-height:140px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:14px;padding:12px 14px;font-weight:800;cursor:pointer;min-height:44px}.primary{background:var(--nav);color:#fff}.secondary{background:#fff;color:var(--nav);border:1px solid #d1dde2}.mic{background:#fff0f3;color:#8b4e5a;border:1px solid #eed2d8}.mic.listening{background:#8b4e5a;color:#fff}.tip{font-size:13px;color:#486a79;background:rgba(255,255,255,.72);border:1px solid rgba(190,207,215,.65);border-radius:13px;padding:10px 11px;margin-top:11px;line-height:1.65}.status{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.55}.bigbtn{width:100%;font-size:16px;margin-top:6px}.output{display:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:14px}.output.show{display:block}.output textarea{min-height:310px;background:#fbfcfd;font-size:13px}.summary{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;background:#fbfcfd;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:13px;line-height:1.6;margin-bottom:12px}.summary b{color:#456777}.camgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.cam{background:#fff;border:1px solid #d3dfe4;border-radius:15px;padding:12px}.cam b{display:block;margin-bottom:4px}.cam small{display:block;color:var(--muted);line-height:1.55}.tag{display:inline-block;font-size:11px;background:#edf3f6;color:#4d6d7c;border-radius:999px;padding:4px 7px;margin-top:7px}.checklist{margin:10px 0 0;padding:0;list-style:none}.checklist li{padding:7px 0;border-bottom:1px dashed #dce5e8;font-size:13px;line-height:1.55}.checklist li:last-child{border-bottom:0}.footer-note{color:#738791;font-size:12px;line-height:1.7;margin-top:18px}.sticky{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(251,250,247,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px}.smallnav{max-width:820px;margin:auto;display:flex;gap:7px;overflow-x:auto}.smallnav a{text-decoration:none;white-space:nowrap;background:#fff;border:1px solid var(--line);color:#526a79;border-radius:999px;padding:8px 10px;font-size:12px}@media(max-width:640px){.grid2,.camgrid{grid-template-columns:1fr}.wrap{padding-left:12px;padding-right:12px}.card{padding:16px}h1{font-size:25px}.btn{width:100%}.summary{grid-template-columns:1fr}.summary b{margin-top:3px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>從臨床經驗長出教材</h1>
-<div class="sub"><strong>這一頁不是幫你把影片做完。</strong><br>先把腦中的臨床想法說清楚、縮小到一個可製作的概念，再把結果帶到免費 ChatGPT，讓 GPT 陪你繼續拆分鏡、逐鏡生成圖片與影片提示詞。</div>
-<div class="notice"><b>個資提醒：</b>請勿輸入或說出病人姓名、床號、病歷號或其他可識別個資。語音只轉文字，本頁不錄音。</div>
-<div id="jsStatus" class="okbox">正在檢查 JavaScript…</div>
+  <header class="hero">
+    <h1>把腦中的影片想法說清楚</h1>
+    <div class="sub"><strong>不用先會寫 Prompt，也不用先懂分鏡。</strong><br>你只要把「要教什麼、給誰看、希望他記住什麼、腦中大概發生什麼」說清楚，再讓 AI 幫你拆成可以製作的鏡頭。</div>
+    <div class="flowline"><span>想法</span><b>→</b><span>說清楚</span><b>→</b><span>AI 拆分鏡</span><b>→</b><span>看懂鏡頭</span><b>→</b><span>進 Flow</span></div>
+    <div class="notice"><b>個資提醒：</b>請勿輸入病人姓名、床號、病歷號或其他可識別個資。語音只做瀏覽器端轉文字，本頁不錄音。</div>
+  </header>
 
-<section class="card blue" id="s1">
-<div class="titleline"><div class="num">1</div><div><h2>我想做什麼？</h2><div class="sub">先定義主題、對象與希望帶來的改變。</div></div></div>
-<label class="fieldlabel">主題</label><input id="topic" type="text" placeholder="例如：病房防跌、導尿無菌、給藥安全">
-<div class="grid2"><div><label class="fieldlabel">對象</label><select id="audience"><option>新進／學員</option><option>護理人員</option><option>病人／家屬／照顧者</option><option>臨床教師</option><option>其他</option></select></div><div><label class="fieldlabel">用途</label><select id="purpose"><option>臨床教學</option><option>病人／家屬衛教</option><option>新進訓練</option><option>短影音</option><option>其他</option></select></div></div>
-<label class="fieldlabel">最希望看完後，對方知道或做到什麼？</label><textarea id="outcome" placeholder="例如：希望家屬知道陪病人下床前，要先確認輪椅與走道安全。"></textarea>
-<a class="anchor" href="#s2">下一步｜把經驗說出來 ↓</a>
-</section>
+  <section class="card blue" id="s1">
+    <div class="titleline"><div class="num">1</div><div><h2>先說清楚：這支影片要教什麼？</h2><div class="sub">先抓主題、對象與唯一核心，不急著想運鏡。</div></div></div>
+    <label class="fieldlabel">主題</label>
+    <input id="topic" type="text" placeholder="例如：導尿管照護、給藥安全、病房風險察覺">
+    <div class="grid2">
+      <div><label class="fieldlabel">給誰看？</label><input id="audience" type="text" placeholder="例如：新進護理師、照顧者、病人家屬"></div>
+      <div><label class="fieldlabel">影片長度</label><select id="duration"><option>20–40 秒</option><option>40–60 秒</option><option>約 60 秒</option><option>還不確定</option></select></div>
+    </div>
+    <label class="fieldlabel">看完最希望他記住／做到什麼？</label>
+    <textarea id="outcome" placeholder="只寫一件事。例如：聽到異常聲音時，不要忽略，要主動確認。"></textarea>
+  </section>
 
-<section class="card pink" id="s2">
-<div class="titleline"><div class="num">2</div><div><h2>先不要整理，直接說你的臨床經驗 🎙️</h2><div class="sub">像跟同事說「我為什麼想做這個？」一樣，不用先寫成教案。</div></div></div>
-<textarea id="experience" class="tall" placeholder="例如：家屬常覺得病人只是去一下廁所沒關係，輪椅沒有先煞車，病人就自己站起來……"></textarea>
-<div class="row"><button class="btn mic" type="button" data-mic-target="experience" data-status-target="micStatus2">🎤 開始說話</button><button class="btn secondary" type="button" data-clear="experience">清空</button></div>
-<div class="status" id="micStatus2">可連續說話；瀏覽器因停頓停止辨識時，網頁會自動續接。再按一次麥克風才會停止。</div>
-<a class="anchor" href="#s3">下一步｜找出真正重要的事 ↓</a>
-</section>
+  <section class="card peach" id="s2">
+    <div class="titleline"><div class="num">2</div><div><h2>把腦中的畫面講出來 🎙️</h2><div class="sub">不用像導演。就像跟同事描述：「我腦中大概是這樣……」</div></div></div>
+    <label class="fieldlabel">大概發生什麼？</label>
+    <textarea id="story" class="tall" placeholder="例如：護理師在安靜的走廊走著，突然聽到聲音，停下來回頭，再走向病房查看，發現病人有風險狀況。"></textarea>
+    <div class="row"><button class="btn mic" type="button" data-mic-target="story" data-status-target="micStatus">🎤 用說的</button><button class="btn secondary" type="button" id="clearStory">清空</button></div>
+    <div id="micStatus" class="status">可以自然說話；若瀏覽器不支援，可直接用手機鍵盤的語音輸入。</div>
+    <label class="fieldlabel">有沒有一定不能變的人物、服裝或重要設定？（選填）</label>
+    <textarea id="fixed" placeholder="例如：年輕女性護理師、白制服、藍色背心、白鞋。若是精準衛教，也可寫：尿袋一定低於膀胱、管路不可折曲。"></textarea>
+    <div class="tip">這裡只放「一定要守住的條件」。景別、運鏡、秒數先交給 AI 提第一版。</div>
+  </section>
 
-<section class="card green" id="s3">
-<div class="titleline"><div class="num">3</div><div><h2>這次最不想漏掉什麼？</h2><div class="sub">不是考你寫教學目標，而是抓出真正值得做成教材的核心。</div></div></div>
-<label class="fieldlabel">觀眾最容易忽略什麼？</label><textarea id="overlook"></textarea><button class="btn mic" type="button" data-mic-target="overlook" data-status-target="micStatus3a">🎤 用說的</button><div class="status" id="micStatus3a"></div>
-<label class="fieldlabel">哪一個錯誤最希望他不要做？</label><textarea id="avoid"></textarea><button class="btn mic" type="button" data-mic-target="avoid" data-status-target="micStatus3b">🎤 用說的</button><div class="status" id="micStatus3b"></div>
-<label class="fieldlabel">如果只能記住一句話？</label><textarea id="oneLine"></textarea><button class="btn mic" type="button" data-mic-target="oneLine" data-status-target="micStatus3c">🎤 用說的</button><div class="status" id="micStatus3c"></div>
-<div class="section-sep"></div><div class="sub">這段內容主要碰到哪些面向？（可複選）</div>
-<div class="options"><label class="choice"><input type="checkbox" name="where" value="準備"><span><b>準備</b><small>用品、環境、病人準備</small></span></label><label class="choice"><input type="checkbox" name="where" value="技術步驟"><span><b>技術步驟</b><small>動作、順序、位置</small></span></label><label class="choice"><input type="checkbox" name="where" value="安全／無菌"><span><b>安全／無菌</b><small>污染、禁忌、不能繼續</small></span></label><label class="choice"><input type="checkbox" name="where" value="臨床判斷"><span><b>臨床判斷</b><small>異常、改變做法、求助</small></span></label><label class="choice"><input type="checkbox" name="where" value="病人關懷"><span><b>病人關懷</b><small>隱私、說明、不適、安心</small></span></label><label class="choice"><input type="checkbox" name="where" value="後續照護"><span><b>後續照護</b><small>觀察、紀錄、預防傷害</small></span></label></div>
-<a class="anchor" href="#s4">下一步｜把題目縮小 ↓</a>
-</section>
+  <section class="card green" id="s3">
+    <div class="titleline"><div class="num">3</div><div><h2>一次交給 AI 拆成 3–5 鏡</h2><div class="sub">不是貼四次。網站會幫你整理成一段完整任務，可貼給免費 ChatGPT 或 Gemini。</div></div></div>
+    <button class="btn primary bigbtn" id="buildBtn" type="button">整理成「分鏡任務」</button>
+    <div class="output" id="resultBox">
+      <h3>我的影片概念</h3>
+      <div class="summary" id="summary"></div>
+      <h3>貼給 ChatGPT／Gemini</h3>
+      <textarea id="promptOut" readonly></textarea>
+      <div class="row"><button class="btn primary" id="copyBtn" type="button">複製分鏡任務</button></div>
+      <div class="tip"><b>你期待 AI 回什麼？</b><br>3–5 個鏡頭，每鏡包含：秒數、畫面內容、人物動作、景別／運鏡、情緒或聲音、教學作用、建議的 Flow 製作方式，以及一段可直接拿去 Flow 的提示詞。</div>
+    </div>
+  </section>
 
-<section class="card peach" id="s4">
-<div class="titleline"><div class="num">4</div><div><h2>這一次只想做哪一小件事？</h2><div class="sub">先不要想完整課程或完整影片，只留這次最值得被看見的一小段。</div></div></div>
-<label class="fieldlabel">這次想聚焦的小主題</label><textarea id="focus" placeholder="例如：陪病人從床邊前往廁所前，家屬要先確認哪些安全條件？"></textarea><button class="btn mic" type="button" data-mic-target="focus" data-status-target="micStatus4">🎤 用說的</button><div class="status" id="micStatus4"></div>
-<label class="fieldlabel">製作方式</label><div class="options"><label class="choice"><input type="radio" name="workMode" value="個人作品" checked><span><b>個人作品</b></span></label><label class="choice"><input type="radio" name="workMode" value="5 人小組，每人約 20 秒"><span><b>5 人小組</b><small>每人約 20 秒再串接</small></span></label></div>
-<div class="tip">還不知道題目是不是太大也沒關係。交給 GPT 後，第一步就是先幫你檢查與縮小。</div>
-<a class="anchor" href="#s5">下一步｜說出腦中的第一個畫面 ↓</a>
-</section>
+  <section class="card lav" id="s4">
+    <div class="titleline"><div class="num">4</div><div><h2>進 Flow 前，先看懂「鏡頭為什麼要動」</h2><div class="sub">不用學電影理論，只要知道幾個常用運鏡各自在幫你做什麼。</div></div></div>
+    <div class="camgrid">
+      <div class="cam"><b>固定 Static</b><small>鏡頭不動，讓觀眾把注意力放在人物動作或醫療細節。</small><span class="tag">看清楚</span></div>
+      <div class="cam"><b>推近 Push-in</b><small>慢慢靠近主體，讓觀眾開始注意某個表情、細節或危險訊號。</small><span class="tag">聚焦／警覺</span></div>
+      <div class="cam"><b>拉遠 Pull-out</b><small>從近處慢慢離開，交代整體環境，也常用在段落結束或結果呈現。</small><span class="tag">交代全貌／收尾</span></div>
+      <div class="cam"><b>跟拍 Tracking</b><small>鏡頭跟著人物一起移動，讓觀眾有「跟著他去看」的感覺。</small><span class="tag">行動／探索</span></div>
+      <div class="cam"><b>橫移／搖鏡 Pan</b><small>把視線從 A 帶到 B，例如從護理師帶向病床、設備或危險物。</small><span class="tag">帶視線</span></div>
+      <div class="cam"><b>輕微手持 Handheld</b><small>畫面有一點自然晃動，可增加臨場感；教學影片要克制使用，避免干擾辨識。</small><span class="tag">臨場／緊張</span></div>
+    </div>
+    <div class="tip"><b>判斷方法：</b>不是「哪個運鏡比較厲害」，而是「我希望觀眾這一刻看哪裡、感覺什麼？」如果沒有理由，固定鏡頭通常比硬加運鏡更好。</div>
+    <ul class="checklist">
+      <li>✓ 一鏡只做一件事，越容易生成穩定。</li>
+      <li>✓ 有醫療細節不能錯時，先做正確基準圖，再讓 AI 動。</li>
+      <li>✓ 人物要延續時，盡量沿用首幀／上一鏡尾幀／角色參考。</li>
+      <li>✓ 看得懂 AI 為什麼建議這個景別與運鏡，再決定要不要接受。</li>
+    </ul>
+  </section>
 
-<section class="card lav" id="s5">
-<div class="titleline"><div class="num">5</div><div><h2>你腦中已經有畫面了嗎？ 🎙️</h2><div class="sub">不用寫 Prompt，只要讓 GPT 知道你目前想到哪裡。</div></div></div>
-<div class="grid2"><div><label class="fieldlabel">場景</label><select id="scene"><option>病房</option><option>護理站</option><option>走廊</option><option>浴廁</option><option>治療空間</option><option>居家</option><option>其他</option><option>還不確定</option></select></div><div><label class="fieldlabel">主要會出現誰？</label><input id="people" type="text" placeholder="例如：病人、家屬、護理師"></div></div>
-<label class="fieldlabel">最希望觀眾一定看見什麼？</label><input id="mustSee" type="text" placeholder="例如：未煞車的輪椅、手碰到無菌區、病人表情">
-<label class="fieldlabel">直接說說你腦中的畫面</label><textarea id="visualDesc" class="tall" placeholder="例如：我想用第一人稱，從病床旁準備陪病人去廁所，低頭才看到輪椅沒有煞車……沒有畫面也可以直接寫『想請 GPT 幫我一起想』。"></textarea><button class="btn mic" type="button" data-mic-target="visualDesc" data-status-target="micStatus5">🎤 用說的比較快</button><div class="status" id="micStatus5"></div>
-<div class="grid2"><div><label class="fieldlabel">目前比較想做</label><select id="format"><option>還不確定，請 GPT 建議</option><option>單張圖片</option><option>連續圖片</option><option>圖片轉影片</option><option>直接生成短影片</option></select></div><div><label class="fieldlabel">偏好的感覺</label><select id="style"><option>還不確定，請 GPT 建議</option><option>寫實醫療</option><option>溫暖衛教</option><option>可愛動畫</option><option>遊戲闖關</option><option>電影感</option></select></div></div>
-<a class="anchor" href="#s6">最後一步｜整理給免費 GPT ↓</a>
-</section>
-
-<section class="card sand" id="s6">
-<div class="titleline"><div class="num">6</div><div><h2>帶著「基本概念包」去免費 ChatGPT</h2><div class="sub">網頁到這裡就停。分鏡與 Prompt 交給 GPT 用對話往下延伸。</div></div></div>
-<button class="btn primary" type="button" id="buildBtn" style="width:100%">整理我的基本概念</button><div id="outputStatus" class="status"></div>
-<div class="output-card"><h3>我的基本概念</h3><textarea id="conceptSummary" readonly>尚未整理。</textarea><button class="btn secondary" type="button" data-copy="conceptSummary">複製基本概念</button></div>
-<div class="output-card"><h3>貼給免費 ChatGPT 的完整指令</h3><textarea id="gptPrompt" readonly>尚未整理。</textarea><button class="btn primary" type="button" data-copy="gptPrompt">複製給 ChatGPT</button><div class="tip"><b>接下來的順序：</b>縮題與補缺口 → 分鏡讓你確認 → 一鏡一鏡做圖片提示詞 → 圖片方向確認後，再做需要動的影片提示詞。</div></div>
-</section>
+  <div class="footer-note">這個頁面的目的不是替你把影片「一鍵做完」，而是讓你知道自己正在決定什麼。AI 先做第一版，人再判斷、修正，最後才進生成工具。</div>
 </div>
-<div class="sticky"><div class="smallnav"><a href="#s1">1 主題</a><a href="#s2">2 經驗</a><a href="#s3">3 核心</a><a href="#s4">4 縮題</a><a href="#s5">5 畫面</a><a href="#s6">6 GPT</a></div></div>
+
+<div class="sticky"><div class="smallnav"><a href="#s1">1 核心</a><a href="#s2">2 情境</a><a href="#s3">3 分鏡</a><a href="#s4">4 運鏡</a></div></div>
+
 <script>
 (function(){'use strict';
-const $=id=>document.getElementById(id);const CONFIG={GAS_WEB_APP_URL:'',LOCAL_STORAGE_KEY:'clinical_teaching_voice_v05'};$('jsStatus').textContent='✓ JavaScript 已啟用。可使用語音、暫存與基本概念整理。';$('jsStatus').className='okbox';const checked=n=>[...document.querySelectorAll('input[name="'+n+'"]:checked')].map(x=>x.value);const radio=n=>document.querySelector('input[name="'+n+'"]:checked')?.value||'';const val=id=>($(id)?.value||'').trim();
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let voice=null;
-function stopVoice(msg){if(!voice)return;const v=voice;v.keep=false;if(v.timer)clearTimeout(v.timer);try{v.rec.stop()}catch(e){try{v.rec.abort()}catch(_){}}v.btn.classList.remove('listening');v.btn.textContent=v.label;if(v.status&&msg)v.status.textContent=msg;voice=null;saveLocal()}
-function startVoice(btn,target,status){if(voice){if(voice.btn===btn){stopVoice('已停止語音輸入。');return}stopVoice('已切換語音欄位。')}const rec=new SR();const v={rec,btn,target,status,keep:true,base:target.value.trim(),finalText:'',timer:null,label:btn.textContent,networkErrors:0};voice=v;rec.lang='zh-TW';rec.interimResults=true;rec.continuous=true;btn.classList.add('listening');btn.textContent='⏹ 停止語音';if(status)status.textContent='正在持續聆聽…可以自然停頓；再按一次才停止。';rec.onresult=e=>{v.networkErrors=0;let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript.trim();if(!t)continue;if(e.results[i].isFinal)v.finalText+=(v.finalText?' ':'')+t;else interim+=(interim?' ':'')+t}target.value=[v.base,v.finalText,interim].filter(Boolean).join(' ');saveLocal()};rec.onerror=e=>{const err=e.error||'';if(err==='not-allowed'||err==='service-not-allowed'||err==='audio-capture'){v.keep=false;if(status)status.textContent='麥克風權限或裝置不可用，請改用手機鍵盤語音輸入。'}else if(err==='network'){v.networkErrors++;if(status)status.textContent='語音服務連線暫時中斷，正在嘗試恢復…';if(v.networkErrors>=2)v.keep=false}else if(err!=='aborted'&&status)status.textContent='辨識暫停，正在自動續接…'};rec.onend=()=>{if(voice!==v)return;if(v.keep){if(status)status.textContent='偵測到停頓，正在自動續接…';v.timer=setTimeout(()=>{if(voice!==v||!v.keep)return;try{rec.start();if(status)status.textContent='正在持續聆聽…'}catch(_){}},250)}else{btn.classList.remove('listening');btn.textContent=v.label;voice=null;saveLocal()}};try{rec.start()}catch(e){if(status)status.textContent='麥克風暫時無法啟動，請稍後再試。';btn.classList.remove('listening');btn.textContent=v.label;voice=null}}
-document.querySelectorAll('[data-mic-target]').forEach(btn=>{const target=$(btn.dataset.micTarget),status=$(btn.dataset.statusTarget);if(!SR){btn.disabled=true;btn.textContent='🎤 請用鍵盤麥克風';if(status)status.textContent='此瀏覽器不支援網頁語音辨識，可用手機鍵盤語音輸入。'}else btn.addEventListener('click',()=>startVoice(btn,target,status))});document.querySelectorAll('[data-clear]').forEach(btn=>btn.addEventListener('click',()=>{const t=$(btn.dataset.clear);if(t)t.value='';saveLocal()}));
-function build(){if(voice)stopVoice('已停止語音並整理目前內容。');const d={topic:val('topic'),audience:val('audience'),purpose:val('purpose'),outcome:val('outcome'),experience:val('experience'),overlook:val('overlook'),avoid:val('avoid'),oneLine:val('oneLine'),aspects:checked('where'),focus:val('focus'),workMode:radio('workMode'),scene:val('scene'),people:val('people'),mustSee:val('mustSee'),visualDesc:val('visualDesc'),format:val('format'),style:val('style')};const concept=`【我目前的基本概念】\n主題：${d.topic||'尚未填寫'}\n對象：${d.audience||'尚未填寫'}\n用途：${d.purpose||'尚未填寫'}\n希望看完後做到：${d.outcome||'尚未填寫'}\n\n【我為什麼想做】\n原始臨床經驗：${d.experience||'尚未填寫'}\n最容易被忽略：${d.overlook||'尚未填寫'}\n最希望避免的錯誤：${d.avoid||'尚未填寫'}\n如果只能記住一句話：${d.oneLine||'尚未填寫'}\n相關面向：${d.aspects.join('、')||'尚未選擇'}\n\n【這次想先聚焦】\n小主題：${d.focus||'尚未填寫'}\n製作方式：${d.workMode||'尚未選擇'}\n\n【我目前想到的畫面】\n場景：${d.scene||'尚未填寫'}\n人物：${d.people||'還不確定'}\n一定想讓觀眾看見：${d.mustSee||'還不確定'}\n腦中畫面：${d.visualDesc||'想請 GPT 協助發想'}\n目前想做的形式：${d.format||'尚未選擇'}\n偏好的風格：${d.style||'尚未選擇'}`;const prompt=`我想把一個臨床教學／衛教想法做成 AI 圖片或短影片。下面是我先整理好的基本概念，請當我的共同設計者，陪我一步一步把它具體化。\n\n重要：不要一開始就把完整分鏡、所有圖片 Prompt、所有影片 Prompt 一次全部產出。我要逐步確認。\n\n請依這個順序：\n\n【第 1 步｜先確認題目】\n先用繁體中文重述：我要教誰、要讓他看見什麼、最後希望他記住或做到什麼。判斷題目是否太大；若太大，提出 2–3 個更小、適合短影音的版本讓我選。資訊真的不足時，最多先問 2 個必要問題。做完先停下來等我確認。\n\n【第 2 步｜我確認小主題後再拆分鏡】\n提出 3–6 個鏡頭，每鏡只做一件事；只寫中文：看到什麼、發生什麼、要記住什麼。不要先產英文 Prompt。做完停下來讓我修改。\n\n【第 3 步｜分鏡確認後逐鏡做圖片】\n一次只處理一鏡。先把中文畫面描述具體，等我確認，再產英文 Image Prompt。主動維持人物、場景、服裝、視角、光線與風格一致。繁體中文字、UI、警示框、分數、徽章等若適合後製，另列出，不要硬生成。每鏡完成後停下來。\n\n【第 4 步｜圖片方向確認後才做影片】\n只替真正需要動的鏡頭產 Video Prompt，寫清楚主體動作、動作先後、必要運鏡、起始與結束畫面。字幕、UI、Freeze Frame、警示框、音效列為 Canva／VN 後製。\n\n【原則】\n- 不要自行補造臨床事實。\n- 用一般人聽得懂的方式引導，不要求我先懂攝影術語。\n- 我答不出來時，給我 2–3 個具體選項，而不是叫我從空白開始。\n- 若是 5 人小組，拆題時考量每人約 20 秒、各自可完成、最後能串接。\n\n${concept}\n\n請現在只執行第 1 步，不要往後做。`;$('conceptSummary').value=concept;$('gptPrompt').value=prompt;$('outputStatus').textContent='✓ 已整理。請複製完整指令到免費 ChatGPT，從第 1 步開始。';saveLocal()}
-$('buildBtn').addEventListener('click',build);document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const ta=$(btn.dataset.copy),text=ta.value||'';try{await navigator.clipboard.writeText(text);const old=btn.textContent;btn.textContent='✓ 已複製';setTimeout(()=>btn.textContent=old,1500)}catch(e){ta.removeAttribute('readonly');ta.select();try{document.execCommand('copy');btn.textContent='✓ 已複製'}catch(_){btn.textContent='請長按文字複製'}ta.setAttribute('readonly','readonly')}}));
-function saveLocal(){try{const data={};document.querySelectorAll('input[type="text"],textarea:not([readonly]),select').forEach(el=>data[el.id]=el.value);data.checks={};['where','workMode'].forEach(n=>data.checks[n]=[...document.querySelectorAll('input[name="'+n+'"]')].map(x=>({value:x.value,checked:x.checked})));localStorage.setItem(CONFIG.LOCAL_STORAGE_KEY,JSON.stringify(data))}catch(e){}}function loadLocal(){try{const raw=localStorage.getItem(CONFIG.LOCAL_STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);Object.keys(data).forEach(k=>{if(k==='checks')return;const el=$(k);if(el)el.value=data[k]});if(data.checks)Object.keys(data.checks).forEach(n=>data.checks[n].forEach(x=>{const el=[...document.querySelectorAll('input[name="'+n+'"]')].find(e=>e.value===x.value);if(el)el.checked=x.checked}))}catch(e){}}document.addEventListener('input',saveLocal);document.addEventListener('change',saveLocal);window.clinicalTeachingConfig={GAS_WEB_APP_URL:CONFIG.GAS_WEB_APP_URL};loadLocal();
+const $=id=>document.getElementById(id);const STORAGE='gogo_storyboard_lite_v1';const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let active=null;
+const val=id=>($(id)?.value||'').trim();
+function save(){try{const d={topic:val('topic'),audience:val('audience'),duration:val('duration'),outcome:val('outcome'),story:val('story'),fixed:val('fixed')};localStorage.setItem(STORAGE,JSON.stringify(d))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE)||'{}');Object.entries(d).forEach(([k,v])=>{if($(k))$(k).value=v})}catch(e){}}
+function stopMic(msg){if(!active)return;const a=active;a.keep=false;try{a.rec.stop()}catch(e){}a.btn.classList.remove('listening');a.btn.textContent='🎤 用說的';if(a.status&&msg)a.status.textContent=msg;active=null;save()}
+function startMic(btn,target,status){if(!SR){if(status)status.textContent='此瀏覽器不支援網頁語音辨識，請改用手機鍵盤語音輸入。';return}if(active){if(active.btn===btn){stopMic('已停止語音輸入。');return}stopMic('已切換語音欄位。')}const rec=new SR();const a={rec,btn,target,status,keep:true,base:target.value.trim(),finalText:''};active=a;rec.lang='zh-TW';rec.interimResults=true;rec.continuous=true;btn.classList.add('listening');btn.textContent='⏹ 停止語音';if(status)status.textContent='正在聆聽…';rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript.trim();if(!t)continue;if(e.results[i].isFinal)a.finalText+=(a.finalText?' ':'')+t;else interim+=(interim?' ':'')+t}target.value=[a.base,a.finalText,interim].filter(Boolean).join(' ');save()};rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'||e.error==='audio-capture'){a.keep=false;if(status)status.textContent='麥克風權限或裝置不可用，請改用鍵盤語音輸入。'}};rec.onend=()=>{if(active!==a)return;if(a.keep){setTimeout(()=>{if(active===a&&a.keep){try{rec.start()}catch(e){}}},250)}else{btn.classList.remove('listening');btn.textContent='🎤 用說的';active=null;save()}};try{rec.start()}catch(e){if(status)status.textContent='麥克風暫時無法啟動。';active=null}}
+document.querySelectorAll('[data-mic-target]').forEach(btn=>btn.addEventListener('click',()=>startMic(btn,$(btn.dataset.micTarget),$(btn.dataset.statusTarget))));
+$('clearStory').addEventListener('click',()=>{$('story').value='';save()});
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+$('buildBtn').addEventListener('click',()=>{if(active)stopMic('已停止語音並整理內容。');const d={topic:val('topic'),audience:val('audience'),duration:val('duration')||'20–40 秒',outcome:val('outcome'),story:val('story'),fixed:val('fixed')};if(!d.topic&&!d.outcome&&!d.story){alert('至少先填「主題、核心或大概情境」其中一項。');return}const fixed=d.fixed||'沒有特別指定，請維持主要人物與場景一致。';$('summary').innerHTML=`<b>主題</b><span>${esc(d.topic||'尚未填寫')}</span><b>對象</b><span>${esc(d.audience||'尚未填寫')}</span><b>長度</b><span>${esc(d.duration)}</span><b>唯一核心</b><span>${esc(d.outcome||'尚未填寫')}</span><b>大概情境</b><span>${esc(d.story||'想請 AI 協助發想')}</span><b>固定條件</b><span>${esc(fixed)}</span>`;const prompt=`我要做一支 ${d.duration} 的教學短影片。\n\n【主題】${d.topic||'請依情境協助命名'}\n【對象】${d.audience||'請依內容判斷'}\n【看完最希望觀眾記住／做到】${d.outcome||'請先從情境判斷一個最重要的核心'}\n【我腦中大概的情境】${d.story||'我還沒有完整畫面，請協助整理'}\n【一定要守住的設定】${fixed}\n\n請把這個想法整理成適合 Flow 製作的 3–5 個鏡頭。不要只寫故事摘要，也不要過度電影化。每一鏡只做一件事，若情境太模糊，請替我收斂成一個可實際生成的畫面，不要同時塞入多個事件。\n\n請用表格呈現，每一鏡包含：\n1. 鏡頭編號與秒數\n2. 畫面內容\n3. 人物動作\n4. 景別\n5. 運鏡，並用一句白話說明「為什麼這裡要這樣動」\n6. 情緒／聲音建議\n7. 這一鏡的教學作用\n8. 建議用 Flow 的：一般文字生成／首幀參考／首尾幀\n9. 一段可直接貼入 Flow 的影片提示詞\n\n請維持主要人物、服裝、場景風格的一致性。若有醫療位置、器材或動作等不能錯的細節，請提醒我先用正確圖片作為基準，不要讓 AI 自由改動。提示詞以清楚、可執行為優先，不要堆砌華麗形容詞。`; $('promptOut').value=prompt;$('resultBox').classList.add('show');$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});save()});
+$('copyBtn').addEventListener('click',async()=>{const text=$('promptOut').value;try{await navigator.clipboard.writeText(text);const old=$('copyBtn').textContent;$('copyBtn').textContent='✓ 已複製';setTimeout(()=>$('copyBtn').textContent=old,1400)}catch(e){$('promptOut').select();document.execCommand('copy')}});
+document.addEventListener('input',save);document.addEventListener('change',save);load();
 })();
 </script>
 </body>
