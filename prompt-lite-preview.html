@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>把想法變成可以開始做的畫面｜預覽版</title>
+<style>
+:root{--bg:#fbfaf8;--ink:#263b48;--muted:#71828b;--line:#dbe5e8;--nav:#315c72;--blue:#eaf5fb;--peach:#fff1e9;--lav:#f2effb;--mint:#eef8f2;--warn:#fff5cf}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif}.wrap{max-width:880px;margin:auto;padding:24px 14px 64px}h1{font-size:30px;margin:0 0 8px}.lead,.hint{color:var(--muted);line-height:1.65}.hint{font-size:13px;margin:5px 0 8px}.badge{display:inline-block;background:var(--mint);border:1px solid #d4e8da;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:800;color:#426956;margin-bottom:12px}.home,.panel,.output{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:16px;box-shadow:0 8px 28px rgba(40,70,85,.06)}.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.route{border:1px solid var(--line);border-radius:20px;padding:20px;text-align:left;cursor:pointer;min-height:165px;color:var(--ink)}.idea{background:var(--lav)}.img{background:var(--blue)}.vid{background:var(--peach)}.route .icon{font-size:32px}.route b{display:block;font-size:18px;margin:10px 0 5px}.route small{color:var(--muted);line-height:1.5}.panel{display:none}.panel.active{display:block}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.back{border:0;background:#eef3f4;color:var(--nav);border-radius:999px;padding:9px 12px;cursor:pointer;white-space:nowrap}.q{margin:20px 0}.q label{display:block;font-weight:800;margin-bottom:7px}input[type=text],textarea{width:100%;border:1px solid #cfdcdf;border-radius:14px;padding:13px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:88px;resize:vertical}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #cfdbde;background:#fff;border-radius:999px;padding:9px 12px;cursor:pointer;color:#49616e}.chip.on{background:var(--nav);color:#fff;border-color:var(--nav)}.motion-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.motion{border:1px solid #d2dddf;border-radius:15px;background:#fff;padding:12px 8px;cursor:pointer;text-align:center}.motion.on{background:#e8f3f8;border-color:#8eb6c9}.motion b,.motion small{display:block}.motion small{color:var(--muted);margin-top:4px}.checks label{display:block;margin:9px 0}.generate,.copy{border:0;border-radius:14px;padding:13px 16px;font-weight:800;cursor:pointer}.generate{background:var(--nav);color:#fff;width:100%;font-size:16px}.copy{background:#eef3f4;color:var(--nav)}.output{display:none}.output.show{display:block}.prompt{white-space:pre-wrap;line-height:1.75;background:#f8fafb;border-radius:14px;padding:14px;margin:10px 0}.next{font-size:13px;color:#58717d;background:#f3f7f8;padding:11px 13px;border-radius:12px;margin-top:12px;line-height:1.7}.warning{background:var(--warn);border:1px solid #eadb9c;border-radius:14px;padding:11px 13px;font-size:13px;line-height:1.6;margin:10px 0}.mini{font-size:12px;color:#6d7d85;margin-top:10px}.principle{background:#f7fafb;border-left:4px solid #8db6c8;border-radius:10px;padding:12px 14px;margin:12px 0;line-height:1.65}.principle b{display:block;margin-bottom:4px}@media(max-width:700px){.routes{grid-template-columns:1fr}.motion-grid{grid-template-columns:1fr 1fr}.route{min-height:auto}h1{font-size:26px}.top{display:block}.back{margin-top:10px}}
+</style>
+</head>
+<body><main class="wrap">
+<section id="home" class="home">
+<div class="badge">GPT / Gemini 都可以使用</div>
+<h1>把想法變成可以開始做的畫面</h1>
+<div class="lead"><strong>不用先會寫 Prompt。</strong><br>看看你現在卡在哪裡，從那裡開始。這個網頁不替你把作品做完，只幫你把腦中的想法整理成可以繼續和 AI 協作的內容。</div>
+<div class="routes">
+<button class="route idea" onclick="openPanel('idea')"><span class="icon">💭</span><b>我只有一個想法</b><small>先把模糊的念頭變成 2–3 個可以開始做的畫面。</small></button>
+<button class="route img" onclick="openPanel('image')"><span class="icon">🖼️</span><b>我想生成一張圖片</b><small>整理「這一刻，我想看到什麼？」並產生 16:9 圖片提示詞。</small></button>
+<button class="route vid" onclick="openPanel('video')"><span class="icon">🎬</span><b>我有圖片，想讓它動</b><small>一次只安排一個主要動作，整理成短影片提示詞。</small></button>
+</div></section>
+
+<section id="idea" class="panel"><div class="top"><div><h2>💭 先把想法變具體</h2><div class="lead">不用先想完整劇本。先決定「想講什麼、最重要的是什麼、想讓觀眾怎麼看到」。</div></div><button class="back" onclick="goHome()">← 返回</button></div>
+<div class="q"><label>1. 你想做什麼？</label><div class="hint">一句話就可以。</div><textarea id="ideaText" placeholder="例如：想做一支導尿照護的短影片"></textarea></div>
+<div class="q"><label>2. 最想讓觀眾記住什麼？</label><textarea id="ideaCore" placeholder="例如：尿袋不要高於膀胱，避免尿液逆流"></textarea></div>
+<div class="q"><label>3. 想怎麼呈現？</label><div class="chips" data-single="ideaType"><button class="chip" data-v="讓物品自己開口說話">物品說話</button><button class="chip" data-v="讓觀眾找出畫面中的錯誤">錯誤排雷</button><button class="chip" data-v="用錯誤與正確做前後對比">前後對比</button><button class="chip" data-v="用一個簡單情境演出">情境演出</button><button class="chip on" data-v="我還不知道，請先給我幾個簡單方向再讓我選">還不知道</button></div></div>
+<div class="principle"><b>這一步只做到「可以開始」</b>不要一次請 AI 寫完整劇本。先把主題縮小，再拆成 2–3 個簡單分鏡。</div>
+<button class="generate" onclick="makeIdea()">✨ 整理成通用延伸提示詞</button>
+<div id="ideaOut" class="output"><h3>貼到 GPT 或 Gemini 都可以</h3><div id="ideaPrompt" class="prompt"></div><button class="copy" onclick="copyText('ideaPrompt',this)">📋 複製提示詞</button><div class="next">讓 AI 先幫你收斂、拆成 2–3 個鏡頭。每一鏡只保留一個主要畫面或主要動作，再決定哪些要生成圖片、哪些要做短影片。</div></div></section>
+
+<section id="image" class="panel"><div class="top"><div><h2>🖼️ 這一刻，我想看到什麼？</h2><div class="lead">圖片是一個瞬間。先把「人物、場景、正在做什麼、怎麼看」說清楚。</div></div><button class="back" onclick="goHome()">← 返回</button></div>
+<div class="principle"><b>圖片提示詞原則</b>人物＋場景＋正在做什麼＋構圖／視角＋風格＋限制</div>
+<div class="q"><label>1. 主角是誰？</label><textarea id="iMain" placeholder="例如：年輕女性護理師，深棕色丸子頭，白色護理制服、藍色背心、白鞋，無護士帽"></textarea></div>
+<div class="q"><label>2. 在哪裡？</label><input id="iWhere" type="text" placeholder="例如：安靜的醫院走廊，具有景深"></div>
+<div class="q"><label>3. 這一刻正在發生什麼？</label><textarea id="iMoment" placeholder="例如：護理師突然回頭望向身後，表情疑惑"></textarea></div>
+<div class="q"><label>4. 想怎麼看到？</label><div class="chips" data-single="shot"><button class="chip" data-v="全景">全景</button><button class="chip on" data-v="中景">中景</button><button class="chip" data-v="特寫">特寫</button></div></div>
+<div class="q"><label>5. 畫面風格</label><div class="chips" data-single="style"><button class="chip on" data-v="柔和日系插畫風格">日系插畫</button><button class="chip" data-v="自然寫實風格">自然寫實</button><button class="chip" data-v="動漫情境風格">動漫情境</button><button class="chip" data-v="3D 黏土公仔風格">3D 黏土</button></div></div>
+<div class="q"><label>6. 不要出現什麼？</label><input id="iLimit" type="text" placeholder="例如：不要護士帽、不要文字、不要增加其他人物"></div>
+<button class="generate" onclick="makeImage()">🖼️ 產生 16:9 圖片提示詞</button>
+<div id="iOut" class="output"><h3>GPT / Gemini 都可以使用</h3><div id="iPrompt" class="prompt"></div><button class="copy" onclick="copyText('iPrompt',this)">📋 複製圖片提示詞</button><div class="next">若圖片還不符合，不要整段重寫。指出「哪裡不對、只改哪一點」通常比較容易保留原本喜歡的部分。</div></div></section>
+
+<section id="video" class="panel"><div class="top"><div><h2>🎬 下一小段，只要發生什麼？</h2><div class="lead">影片是一段過程。原圖已經有了，不需要重新描述整張圖片。</div></div><button class="back" onclick="goHome()">← 返回</button></div>
+<div class="warning"><strong>先不要急著按生成。</strong><br>一大段故事 ≠ 一個鏡頭。短影片先保留一個主要動作，成功率通常比較高。</div>
+<div class="principle"><b>影片提示詞原則</b>人物怎麼動＋環境怎麼動＋鏡頭怎麼動＋速度／節奏＋不要發生什麼</div>
+<div class="q"><label>1. 這一小段最主要的動作是什麼？</label><textarea id="vAction" placeholder="例如：護理師緊張警覺地緩慢轉頭望向聲音來源"></textarea></div>
+<div class="q"><label>2. 鏡頭怎麼動？</label><div class="motion-grid"><button class="motion on" data-v="固定鏡頭"><b>▣ 固定</b><small>人物自己動</small></button><button class="motion" data-v="鏡頭緩慢推近"><b>🔍 推近</b><small>聚焦</small></button><button class="motion" data-v="鏡頭緩慢拉遠"><b>◻ 拉遠</b><small>看全貌</small></button><button class="motion" data-v="鏡頭緩慢平移"><b>↔ 平移</b><small>帶著看</small></button><button class="motion" data-v="鏡頭自然跟拍"><b>→ 跟拍</b><small>跟著走</small></button></div></div>
+<div class="q"><label>3. 速度／節奏</label><div class="chips" data-single="pace"><button class="chip" data-v="緩慢、克制">緩慢</button><button class="chip on" data-v="自然、有明確節奏">自然</button><button class="chip" data-v="快速、急迫">急迫</button></div></div>
+<div class="q"><label>4. 不要發生什麼？</label><textarea id="vLimit" placeholder="例如：不要新增人物、不要改變服裝、不要讓角色做第二個主要動作"></textarea></div>
+<button class="generate" onclick="makeVideo()">🎬 整理成短影片提示詞</button>
+<div id="vOut" class="output"><h3>可用於 Flow 等短影片生成工具</h3><div id="vPrompt" class="prompt"></div><button class="copy" onclick="copyText('vPrompt',this)">📋 複製影片提示詞</button><div class="next"><strong>生成前再看一次：</strong>這一鏡是不是只有一個主要動作？如果還有「然後、接著、之後」很多次，先拆成下一個鏡頭。</div></div></section>
+
+<p class="mini">教學用途｜本頁只協助整理提示詞，不會把內容送到任何 AI，也不會消耗生成次數。</p>
+</main>
+<script>
+function openPanel(id){document.getElementById('home').style.display='none';document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function goHome(){document.getElementById('home').style.display='block';document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));window.scrollTo(0,0)}
+document.querySelectorAll('.chips').forEach(g=>g.addEventListener('click',e=>{let b=e.target.closest('.chip');if(!b)return;g.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+document.querySelectorAll('.motion-grid').forEach(g=>g.addEventListener('click',e=>{let b=e.target.closest('.motion');if(!b)return;g.querySelectorAll('.motion').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+function chosen(sel){let x=document.querySelector(sel+' .on');return x?x.dataset.v:''}
+function makeIdea(){let t=document.getElementById('ideaText').value.trim()||'（請填入主題）';let c=document.getElementById('ideaCore').value.trim()||'（我還沒有想清楚，請協助我找出最值得留下的一個重點）';let ty=chosen('[data-single="ideaType"]');let p=`我想製作一支簡短的護理教學／衛教作品，請和我一起把想法變得更具體，但不要一次替我做成完整作品。\n\n【目前主題】\n${t}\n\n【最希望觀眾記住的重點】\n${c}\n\n【目前想採用的呈現方式】\n${ty}\n\n請協助我：\n1. 先判斷這個主題是否太大；如果太大，先幫我縮小成一個短影片可以說清楚的重點。\n2. 提供 2–3 個簡單、可操作的分鏡概念，每一鏡只保留一個主要畫面或一個主要動作。\n3. 每一鏡請告訴我「觀眾會看到什麼」以及「這一鏡適合先生成圖片，還是直接做短影片」。\n4. 不要寫成複雜電影劇本，不要一次塞很多動作。\n5. 以初學者、免費工具、短時間可以完成為前提。\n6. 如果有不同呈現方式可以讓內容更有記憶點，可以提出 2–3 個簡單方向讓我選，但不要過度發散。\n\n最後請用：\n【核心概念】\n【分鏡 1】\n【分鏡 2】\n【分鏡 3（需要才提供）】\n【建議先生成圖片的部分】\n【適合做短影片的部分】\n【下一步最簡單可以先做什麼】\n的格式回答。`;
+document.getElementById('ideaPrompt').textContent=p;document.getElementById('ideaOut').classList.add('show');document.getElementById('ideaOut').scrollIntoView({behavior:'smooth'})}
+function makeImage(){let a=document.getElementById('iMain').value.trim()||'主角';let w=document.getElementById('iWhere').value.trim()||'合適的場景';let m=document.getElementById('iMoment').value.trim()||'一個清楚的關鍵瞬間';let s=chosen('[data-single="shot"]');let st=chosen('[data-single="style"]');let l=document.getElementById('iLimit').value.trim();let p=`${a}，位於${w}，${m}。${s}，16:9 橫式構圖，${st}。${l?`限制：${l}。`:''}畫面主體清楚、構圖簡潔，適合後續作為短影片生成的起始圖片。`;
+document.getElementById('iPrompt').textContent=p;document.getElementById('iOut').classList.add('show');document.getElementById('iOut').scrollIntoView({behavior:'smooth'})}
+function makeVideo(){let a=document.getElementById('vAction').value.trim()||'（請填入一個主要動作）';let cam=document.querySelector('.motion.on')?.dataset.v||'固定鏡頭';let pace=chosen('[data-single="pace"]');let lim=document.getElementById('vLimit').value.trim();let p=`保持原有人物、服裝、主要物件與場景一致。\n\n主要動作：${a}。\n環境：維持原場景，只加入符合主要動作所需的自然環境變化，不新增無關人物或物件。\n鏡頭：${cam}。\n速度／節奏：${pace}。\n${lim?`限制：${lim}。`:'限制：不要新增第二個主要動作，不要任意改變人物外觀或場景。'}\n\n這一小段只完成上述一個主要動作；如果故事還要繼續，請留到下一個鏡頭。`;
+document.getElementById('vPrompt').textContent=p;document.getElementById('vOut').classList.add('show');document.getElementById('vOut').scrollIntoView({behavior:'smooth'})}
+async function copyText(id,b){let t=document.getElementById(id).innerText;try{await navigator.clipboard.writeText(t);let old=b.textContent;b.textContent='✓ 已複製';setTimeout(()=>b.textContent=old,1400)}catch(e){alert('請手動選取文字複製')}}
+</script></body></html>
