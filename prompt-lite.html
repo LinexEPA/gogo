@@ -8,7 +8,7 @@
 :root{--bg:#fbfaf8;--ink:#263b48;--muted:#70818a;--line:#dde6e8;--blue:#eaf5fb;--peach:#fff1e9;--nav:#315c72;--soft:#f4f7f8;--warn:#fff7db}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif}
-.wrap{max-width:860px;margin:auto;padding:22px 14px 56px}
+.wrap{max-width:1180px;margin:auto;padding:28px 20px 64px}
 .card,.output{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:16px;box-shadow:0 8px 28px rgba(40,70,85,.06)}
 h1{font-size:30px;margin:0 0 8px}h2{font-size:24px;margin:0 0 8px}h3{margin:0 0 8px}.lead,.hint,.sub{color:var(--muted);line-height:1.65}.hint{font-size:13px;margin-top:5px}.sub{font-size:14px}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn,.ghost,.copy{border:0;border-radius:14px;padding:13px 16px;font-weight:800;cursor:pointer;font:inherit}.btn{background:var(--nav);color:#fff}.ghost,.copy{background:#eef3f4;color:var(--nav)}
@@ -16,7 +16,8 @@ h1{font-size:30px;margin:0 0 8px}h2{font-size:24px;margin:0 0 8px}h3{margin:0 0 
 .motion-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.motion{border:1px solid #d2dddf;border-radius:15px;background:#fff;padding:12px 8px;cursor:pointer;text-align:center}.motion.on{background:#e8f3f8;border-color:#8eb6c9}.motion b,.motion small{display:block}.motion small{color:var(--muted);margin-top:4px}
 .checks label{display:block;margin:9px 0}.step-tag{display:inline-block;background:#eef6fa;color:#355f74;border-radius:999px;padding:5px 10px;font-size:12px;margin-bottom:8px}.notice{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.7;margin-top:10px}.notice.warn{background:var(--warn);border:1px solid #eadb9c}.output{display:none}.output.show{display:block}.prompt{white-space:pre-wrap;line-height:1.75;background:#f8fafb;border-radius:14px;padding:14px;margin:10px 0 14px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.jump{font-size:13px;color:var(--muted)}
 #videoShortcut{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
-@media(max-width:700px){h1{font-size:26px}.motion-grid{grid-template-columns:1fr 1fr}.hero-actions{flex-direction:column}.btn,.ghost{width:100%}}
+@media(min-width:900px){.card,.output{padding:28px 32px}h1{font-size:34px}h2{font-size:27px}.lead{font-size:17px}.sub{font-size:15px}.hint{font-size:14px}.btn,.ghost,.copy{padding:14px 18px}}
+@media(max-width:700px){.wrap{max-width:860px;padding:22px 14px 56px}.card,.output{padding:20px}h1{font-size:26px}.motion-grid{grid-template-columns:1fr 1fr}.hero-actions{flex-direction:column}.btn,.ghost{width:100%}}
 </style>
 </head>
 <body>
@@ -170,13 +171,60 @@ function makeImage(){
   const main=qs('#iMain').value.trim()||'（請補上主角）';
   const where=qs('#iWhere').value.trim()||'（請補上場景）';
   const moment=qs('#iMoment').value.trim()||'（請補上這一刻看到什麼）';
-  const prompt=`請根據以下需求，協助我生成一張 16:9 橫式圖片。若資訊仍缺少會明顯影響畫面結果的重要細節，請先用 1 個簡短問題確認；若資訊已足夠，則直接生成。\n\n【主角】\n${main}\n\n【場景】\n${where}\n\n【這一刻正在發生什麼】\n${moment}\n\n【景別】\n${val('shot')}\n\n【畫面感覺】\n${val('ifeel')}\n\n【風格】\n${val('style')}\n\n請整理成清楚的圖片提示詞，重點放在：人物或主體、場景、正在做什麼、構圖／視角、風格與限制。若我的描述偏抽象，請優先幫我轉成更具體的畫面語言，但不要改變核心情境。`;
+  const prompt=`請根據以下需求，協助我生成一張 16:9 橫式圖片。若資訊仍缺少會明顯影響畫面結果的重要細節，請先用 1 個簡短問題確認；若資訊已足夠，則直接生成。\
+\
+【主角】\
+${main}\
+\
+【場景】\
+${where}\
+\
+【這一刻正在發生什麼】\
+${moment}\
+\
+【景別】\
+${val('shot')}\
+\
+【畫面感覺】\
+${val('ifeel')}\
+\
+【風格】\
+${val('style')}\
+\
+請整理成清楚的圖片提示詞，重點放在：人物或主體、場景、正在做什麼、構圖／視角、風格與限制。若我的描述偏抽象，請優先幫我轉成更具體的畫面語言，但不要改變核心情境。`;
   showOutput('#iOut',prompt)
 }
 function makeVideo(){
   const action=qs('#vAction').value.trim()||'（請補上這一鏡的主要動作）';
   const limits=checkedValues();
-  const prompt=`我有一張已經生成好的圖片，想把它延伸成一小段短影片。\n\n【目前這一鏡最主要想發生的事】\n${action}\n\n【希望的鏡頭】\n${motionVal()}\n\n【希望的感覺】\n${val('vfeel')}\n\n【希望保持不變】\n${limits.length?limits.join('、'):'盡量保持原有角色與場景一致'}\n\n請先不要直接寫最終影片提示詞。\n\n先和我一起確認這一鏡是否適合在短時間內完成：\n1. 判斷我是不是放了太多動作。\n2. 如果超過一個主要事件，請幫我拆成不同鏡頭，不要硬塞在同一段影片。\n3. 檢查人物動作、環境變化、鏡頭運動和節奏是否互相衝突。\n4. 如果還缺一個會明顯影響結果的重要資訊，再問我一個簡短問題；不要一次問很多題。\n5. 如果資訊已經足夠，就不用再追問。\n\n等我們確認後，再幫我整理成一段可直接用於 AI 影片生成的提示詞。\n\n最後的影片提示詞請包含：人物怎麼動＋環境怎麼動＋鏡頭怎麼動＋速度／節奏＋不要發生什麼。\n原圖已有的外觀與場景不需要重新長篇描述。\n每一鏡只保留一個主要動作。`;
+  const prompt=`我有一張已經生成好的圖片，想把它延伸成一小段短影片。\
+\
+【目前這一鏡最主要想發生的事】\
+${action}\
+\
+【希望的鏡頭】\
+${motionVal()}\
+\
+【希望的感覺】\
+${val('vfeel')}\
+\
+【希望保持不變】\
+${limits.length?limits.join('、'):'盡量保持原有角色與場景一致'}\
+\
+請先不要直接寫最終影片提示詞。\
+\
+先和我一起確認這一鏡是否適合在短時間內完成：\
+1. 判斷我是不是放了太多動作。\
+2. 如果超過一個主要事件，請幫我拆成不同鏡頭，不要硬塞在同一段影片。\
+3. 檢查人物動作、環境變化、鏡頭運動和節奏是否互相衝突。\
+4. 如果還缺一個會明顯影響結果的重要資訊，再問我一個簡短問題；不要一次問很多題。\
+5. 如果資訊已經足夠，就不用再追問。\
+\
+等我們確認後，再幫我整理成一段可直接用於 AI 影片生成的提示詞。\
+\
+最後的影片提示詞請包含：人物怎麼動＋環境怎麼動＋鏡頭怎麼動＋速度／節奏＋不要發生什麼。\
+原圖已有的外觀與場景不需要重新長篇描述。\
+每一鏡只保留一個主要動作。`;
   showOutput('#vOut',prompt)
 }
 </script>
